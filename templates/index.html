@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slime Mold Simulator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Slime Mold Simulator</h1>
+            <div class="controls">
+                <button id="start-btn" class="control-btn">Start</button>
+                <button id="stop-btn" class="control-btn">Stop</button>
+                <button id="reset-btn" class="control-btn">Reset</button>
+                <span id="fps-counter" class="fps">FPS: 0</span>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <div class="simulation-container">
+                <canvas id="simulation-canvas" width="800" height="600"></canvas>
+                <div class="info-box">
+                    <p>Click on the canvas to add food manually.</p>
+                    <p id="stats">Network length: 0 | Food found: 0</p>
+                </div>
+            </div>
+            
+            <div class="settings-panel">
+                <h2>Settings</h2>
+                <div class="settings-form">
+                    <div class="setting-group">
+                        <h3>Agent Parameters</h3>
+                        <div class="setting">
+                            <label for="num-agents">Number of Agents:</label>
+                            <input type="range" id="num-agents" min="100" max="10000" step="100" value="5000">
+                            <span class="value-display">5000</span>
+                        </div>
+                        
+                        <div class="setting">
+                            <label for="agent-speed">Agent Speed:</label>
+                            <input type="range" id="agent-speed" min="0.1" max="3" step="0.1" value="1.0">
+                            <span class="value-display">1.0</span>
+                        </div>
+                        
+                        <div class="setting">
+                            <label for="sensor-angle">Sensor Angle:</label>
+                            <input type="range" id="sensor-angle" min="10" max="90" step="5" value="45">
+                            <span class="value-display">45°</span>
+                        </div>
+                        
+                        <div class="setting">
+                            <label for="sensor-distance">Sensor Distance:</label>
+                            <input type="range" id="sensor-distance" min="3" max="20" step="1" value="9">
+                            <span class="value-display">9</span>
+                        </div>
+                        
+                        <div class="setting">
+                            <label for="turn-speed">Turn Speed:</label>
+                            <input type="range" id="turn-speed" min="0.1" max="2" step="0.1" value="0.5">
+                            <span class="value-display">0.5</span>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-group">
+                        <h3>Trail Parameters</h3>
+                        <div class="setting">
+                            <label for="trail-strength">Trail Strength:</label>
+                            <input type="range" id="trail-strength" min="1" max="20" step="1" value="5">
+                            <span class="value-display">5</span>
+                        </div>
+                        
+                        <div class="setting">
+                            <label for="trail-evaporation">Evaporation Rate:</label>
+                            <input type="range" id="trail-evaporation" min="0.001" max="0.1" step="0.001" value="0.02">
+                            <span class="value-display">0.02</span>
+                        </div>
+                        
+                        <div class="setting">
+                            <label for="trail-diffusion">Diffusion Rate:</label>
+                            <input type="range" id="trail-diffusion" min="0.01" max="0.5" step="0.01" value="0.1">
+                            <span class="value-display">0.1</span>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-group">
+                        <h3>Food Parameters</h3>
+                        <div class="setting">
+                            <label for="food-quantity">Food Quantity:</label>
+                            <input type="range" id="food-quantity" min="0" max="50" step="1" value="15">
+                            <span class="value-display">15</span>
+                        </div>
+                        
+                        <div class="setting">
+                            <label for="food-spawn-rate">Food Spawn Rate:</label>
+                            <input type="range" id="food-spawn-rate" min="0" max="0.01" step="0.001" value="0">
+                            <span class="value-display">0</span>
+                        </div>
+                        
+                        <div class="setting">
+                            <label for="nucleus-size">Nucleus Size:</label>
+                            <input type="range" id="nucleus-size" min="10" max="50" step="1" value="25">
+                            <span class="value-display">25</span>
+                        </div>
+                    </div>
+                    
+                    <button id="apply-btn" class="control-btn">Apply Settings</button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Slime Mold Simulator - Based on the behavior of Physarum polycephalum</p>
+        </footer>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/simulation.js') }}"></script>
+</body>
+</html> 
