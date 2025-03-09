@@ -104,17 +104,17 @@ class World:
         # Initialize grid for food
         self.food_map = np.zeros((height, width), dtype=np.bool_)
         
+        # Create nucleus in the center
+        self.nucleus_x = width // 2
+        self.nucleus_y = height // 2
+        self.nucleus_size = config['nucleus_size']
+        
         # Initialize agents
         self.agents = []
         self.initialize_agents()
         
         # Initialize food
         self.initialize_food()
-        
-        # Create nucleus in the center
-        self.nucleus_x = width // 2
-        self.nucleus_y = height // 2
-        self.nucleus_size = config['nucleus_size']
         
     def initialize_agents(self):
         """Create initial agents at the nucleus"""
